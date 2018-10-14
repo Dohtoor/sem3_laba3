@@ -27,10 +27,10 @@ int main()
 
 	fclose(inFile);
 	fclose(outFile);
-    return 0;
+	return 0;
 }
 
-void changeLine (char* Buffer)
+void changeLine(char* Buffer)
 {
 	int i, b = 0;
 	char Buffer_out[256];
@@ -41,6 +41,12 @@ void changeLine (char* Buffer)
 		{
 			*(Buffer_out + b) = '\n';
 			*(Buffer_out + b + 1) = '\0';
+			break;
+		}
+
+		if (*(Buffer + i) == '\0')
+		{
+			*(Buffer_out + b) = '\0';
 			break;
 		}
 
@@ -65,18 +71,29 @@ void changeLine (char* Buffer)
 					}
 
 					continue;
-				} else 
+				}
+				else
 				{
 					*(Buffer_out + b) = *(Buffer + i);
 					*(Buffer_out + b + 1) = ' ';
 					b = b + 2;
 					continue;
 				}
-			} else
-				*(Buffer_out + b) = *(Buffer + i);
-				b++;
-				continue;
-		}			
+			}
+			else
+			{
+				if ((*(Buffer + i) > 90) && (*(Buffer + i) < 97))
+				{
+					*(Buffer_out + b) = *(Buffer + i);
+					*(Buffer_out + b + 1) = ' ';
+					b = b + 2;
+					continue;
+				}
+				else *(Buffer_out + b) = *(Buffer + i);
+			}
+			b++;
+			continue;
+		}
 		*(Buffer_out + b) = *(Buffer + i);
 		b++;
 	}
