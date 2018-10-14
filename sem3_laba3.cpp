@@ -55,10 +55,11 @@ void changeLine (char* Buffer)
 					if (*(Buffer + i + 1) != '\0')
 					{
 						if ((*(Buffer + i + 1) > 96) && (*(Buffer + i + 1) < 123))
+						{
 							*(Buffer_out + b) = *(Buffer + i + 1) - 32;
-						else *(Buffer_out + b) = *(Buffer + i + 1);
-						b++;
-						i++;
+							b++;
+							i++;
+						}
 					}
 
 					continue;
