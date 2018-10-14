@@ -21,6 +21,7 @@ int main()
 	while (fgets(buffer, 256, inFile) != NULL)
 	{
 		changeLine(buffer);
+
 		fputs(buffer, outFile);
 	}
 
@@ -36,9 +37,10 @@ void changeLine (char* Buffer)
 
 	for (i = 0; i < 256; i++)
 	{
-		if (*(Buffer + i) == '\0')
+		if (*(Buffer + i) == '\n')
 		{
-			*(Buffer_out + b) = '\0';
+			*(Buffer_out + b) = '\n';
+			*(Buffer_out + b + 1) = '\0';
 			break;
 		}
 
